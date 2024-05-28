@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://i.ibb.co/6NDs5jQ/FS.png">
+    <title>Food-Store</title>
+    <link rel="stylesheet" href="./style/style.css">
+    <script src="./js/adminindex.js" type="module" defer></script>
+    <script src="./js/modal.js" defer></script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="logo">
+            <a href="/" class="logo-link">
+                <img src="https://i.ibb.co/6NDs5jQ/FS.png" alt="Логотип сайту" class="logo-img">
+            </a>
+        </div>
+        <h1>Товари харчування Food-Store</h1>
+        
+         
+        <!-- Додано поле пошуку -->
+        <div class="searchInput">
+            <div class="icona"></div>
+            <div class="input">
+                <input type="text" id="searchInput" placeholder="Пошук...">
+            </div>
+        </div>
+        
+        <!-- Нова структура для відображення категорій -->
+        <div class="categories">
+            <h2>Категорії</h2>
+            <button class="category-option" data-category="Фрукти">Фрукти</button>
+            <button class="category-option" data-category="Овочі">Овочі</button>
+            <button class="category-option" data-category="Продукти харчування">Продукти харчування</button>
+            <button class="category-option" data-category="Напої">Напої</button>
+            <button class="category-option" data-category="Алкоголь">Алкоголь</button>
+        </div>
+
+        <div class="cards"></div>
+        <button class="add-card-btn">Додати нову карточку товару</button>
+        <button class="show-cards none">Показати ще</button>
+
+        <a class="home" href="/">
+            <svg width="45" height="45" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M7.98 1.984l7 6h-2.003v6H9.96V10.97H5.997v3.016H2.982v-6H.979l7-6z" fill="#000"></path>
+            </svg>
+        </a>
+    </div>
+    <div id="message" style="display: none;"></div>
+
+    <!-- HTML структура модального вікна -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form id="editForm">
+                <label for="editTitle">Назва товару:</label>
+                <input type="text" id="editTitle" name="editTitle" required><br><br>
+                <label for="editPrice">Ціна:</label>
+                <input type="number" id="editPrice" name="editPrice" required><br><br>
+                <label for="editDiscount">Знижка (%):</label>
+                <input type="number" id="editDiscount" name="editDiscount" required><br><br>
+                <input type="checkbox" id="applyDiscount" name="applyDiscount">
+                <label for="applyDiscount">Надати знижку</label>
+
+                <label for="editImg">URL зображення:</label>
+                <input type="text" id="editImg" name="editImg" required><br><br>
+                <label for="editDescr">Опис:</label>
+                <textarea id="editDescr" name="editDescr"></textarea><br><br>
+                <label for="editCategory">Категорія:</label>
+                <input type="text" id="editCategory" name="editCategory" required><br><br>
+                <label for="editExpiry">Термін придатності:</label>
+                <input type="text" id="editExpiry" name="editExpiry" required><br><br>
+                <label for="editManufacturer">Виробник:</label>
+                <input type="text" id="editManufacturer" name="editManufacturer" required><br><br>
+                <label for="editComposition">Склад:</label>
+                <input type="text" id="editComposition" name="editComposition" required><br><br>
+                <input type="submit" value="Зберегти зміни">
+            </form>
+        </div>
+    </div>
+<script>document.addEventListener('DOMContentLoaded', function () {
+    // Вибираємо всі кнопки категорій
+    const categoryButtons = document.querySelectorAll('.category-option');
+
+    // Додаємо обробник подій click до кожної кнопки категорій
+    categoryButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            // Отримуємо категорію з атрибута data-category
+            const category = this.getAttribute('data-category');
+            // Формуємо URL на основі категорії і перенаправляємо користувача на відповідну сторінку
+            switch (category) {
+                case 'Фрукти':
+                    window.location.href = 'category-fruits.html';
+                    break;
+                case 'Овочі':
+                    window.location.href = 'category-vegetables.html';
+                    break;
+                case 'Продукти харчування':
+                    window.location.href = 'category-foods.html';
+                    break;
+                case 'Напої':
+                    window.location.href = 'category-drinks.html';
+                    break;
+                case 'Алкоголь':
+                    window.location.href = 'category-alcohol.html';
+                    break;
+                default:
+                    // Додатковий код у випадку потреби
+                    break;
+            }
+        });
+    });
+});
+
+</script>
+
+    <footer style="font-family: Arial, Helvetica, sans-serif; text-align: center; padding: 10px 0;">
+        Виникли питання? 0682234294
+        Дзвоніть по номеру телефону:)
+    </footer>
+</body>
+<script src="js/scripts.js"></script>
+</html>
