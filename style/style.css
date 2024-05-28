@@ -1,0 +1,626 @@
+@import url('./reset.css');
+
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+    border: 5px solid;
+    border-image: linear-gradient(135deg, #0e9b71, #098a63) 1;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 225px);
+    width: 100%;
+    max-width: 1000px; 
+    justify-content: center;
+    justify-items: center; 
+    column-gap: 30px;
+    row-gap: 40px; 
+    margin: 60px auto;
+}
+
+.card {
+    width: 250px;
+    min-height: 350px;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+    transition: 0.2s;
+    position: relative;
+    padding: 10px;
+}
+
+.card:hover {
+    box-shadow: 4px 8px 16px rgba(255, 102, 51, 0.2);
+}
+
+.card__top {
+    flex: 0 0 220px;
+    position: relative;
+    overflow: hidden;
+}
+
+.card__image {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.card__image > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: 0.2s;
+}
+
+.card__image:hover > img {
+    transform: scale(1.1);
+}
+
+.card__label {
+    padding: 4px 8px;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: #ff6633;
+    border-radius: 4px;
+    font-weight: 400;
+    font-size: 16px;
+    color: #fff;
+}
+
+.card__bottom {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
+    padding: 5px;
+}
+
+.card__prices {
+    display: flex;
+    margin-bottom: 10px;
+    flex: 0 0 50%;
+}
+
+.card__price::after {
+    content: "ГРН";
+    margin-left: 4px;
+    position: relative;
+}
+
+.card__price--discount {
+    font-weight: 700;
+    font-size: 19px;
+    color: #414141;
+    display: flex;
+    flex-wrap: wrap-reverse;
+}
+
+.card__price--discount::before {
+    content: "Зі знижкою";
+    font-weight: 400;
+    font-size: 13px;
+    color: #bfbfbf;
+}
+
+.card__price--common {
+    font-weight: 400;
+    font-size: 17px;
+    color: #606060;
+    display: flex;
+    flex-wrap: wrap-reverse;
+    justify-content: flex-end;
+}
+
+.card__price--common::before {
+    content: "Звичайна ціна";
+    font-weight: 400;
+    font-size: 13px;
+    color: #bfbfbf;
+}
+
+.card__title {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 150%;
+    color: #414141;
+}
+
+.card__title:hover {
+    color: #ff6633;
+}
+
+.card__add, .card__edit, .card__delete {
+    display: block;
+    width: 100%;
+    font-weight: 400;
+    font-size: 17px;
+    color: #0f835c;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #0c7552;
+    border-radius: 4px;
+    cursor: pointer; 
+    transition: 0.2s;
+    margin-top: auto;
+}
+
+.card__add:hover, .card__add.active, .card__edit:hover, .card__delete:hover {
+    border: 1px solid #134ecf;
+    background-color: #0d39b1;
+    color: #fff;
+}
+
+.show-cards {
+    padding: 20px;
+    margin-bottom: 20px;
+    color: white;
+    background-color: #606060;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.show-cards:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.basket {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.basket__inner {
+    position: relative;
+    color: #0e9b71; /* Зелений колір */
+}
+
+.basket__count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    border-radius: 50%;
+    background-color: #ff3b30;
+    color: white;
+    padding: 3px;
+    text-align: center;
+    min-width: 25px;
+}
+
+.home {
+    position: absolute;
+    top: 16px;
+    right: 60px;
+}
+
+.logo {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+}
+
+.logo-link {
+    display: block;
+}
+
+.logo-img {
+    width: 130px;
+    height: auto;
+}
+
+/* Стилі для контейнера категорії та терміну придатності */
+.card__details {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #414141;
+}
+
+.card__details b {
+    font-weight: 700;
+    color: #606060;
+}
+
+.card__details span {
+    font-weight: 400;
+    color: #414141;
+    transition: color 0.2s;
+}
+
+.card__details:hover span {
+    color: #ff6633;
+}
+
+/* Стилі для нових характеристик категорії та терміну придатності */
+.card__details, .product__details {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #414141;
+}
+
+.card__details b, .product__details b {
+    font-weight: 700;
+    color: #606060;
+}
+
+.card__details span, .product__details span {
+    font-weight: 400;
+    color: #414141;
+    transition: color 0.2s;
+}
+
+.card__details:hover span, .product__details:hover span {
+    color: #2ea17b;
+}
+
+.card__category,
+.card__expiry {
+    font-size: 10px; 
+}
+
+.card__composition,
+.card__manufacturer {
+    font-size: 10px; 
+}
+
+/* Стилі для модального вікна */
+.modal {
+    display: none; /* Значення none приховує модальне вікно за замовчуванням */
+    position: fixed; /* Фіксована позиція */
+    z-index: 1; /* Вище всіх інших елементів */
+    left: 0;
+    top: 0;
+    width: 100%; /* 100% ширина */
+    height: 100%; /* 100% висота */
+    overflow: auto; /* Дозволяє прокручувати вміст, якщо він не поміщається */
+    background-color: rgba(0,0,0,0.5); /* Півпрозорий чорний колір фону */
+  }
+  
+  /* Стилі для вмісту модального вікна */
+  .modal-content {
+    background-color: #fefefe; /* Білий колір фону */
+    margin: 15% auto; /* Відступи від верхнього і нижнього країв */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* 80% ширина */
+    max-width: 600px; /* Максимальна ширина */
+    border-radius: 10px; /* Радіус кутів */
+  }
+  
+  /* Стилі для кнопки закриття */
+  .close {
+    color: #aaa; /* Сірий колір тексту */
+    float: right; /* Вирівнювання справа */
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black; /* Чорний колір тексту при наведенні */
+    text-decoration: none; /* Відміна підкреслення при наведенні */
+    cursor: pointer; /* Зміна курсора при наведенні */
+  }
+  /* Стилі для кнопки "Зберегти зміни" */
+#editForm input[type="submit"] {
+    background-color: #2ca073; /* Колір фону кнопки (синій) */
+    color: white; /* Колір тексту кнопки (білий) */
+    padding: 10px 20px; /* Поперечний та вертикальний внутрішні відступи */
+    border: none; /* Відсутність меж */
+    border-radius: 5px; /* Радіус кутів */
+    cursor: pointer; /* Зміна курсора при наведенні */
+    font-size: 16px; /* Розмір шрифту */
+  }
+  
+  #editForm input[type="submit"]:hover {
+    background-color: #0056b3; /* Колір фону кнопки при наведенні */
+  }
+  
+/* Добавити до існуючих стилів */
+.deleted-cards {
+    padding: 20px;
+    margin-top: 20px;
+    color: white;
+    background-color: #606060;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.deleted-cards:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+/* Стилі для кнопки видалення */
+.card__delete {
+    display: block;
+    width: 100%;
+    font-weight: 400;
+    font-size: 14px; /* Зменшено розмір шрифту */
+    color: #f00;
+    padding: 6px; /* Зменшено розмір padding */
+    text-align: center;
+    border: 1px solid #c00;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-top: auto;
+}
+
+
+.card__delete:hover {
+    border: 1px solid #a00;
+    background-color: #900;
+    color: #fff;
+}
+.add-card-btn {
+    display: block;
+    font-weight: 400;
+    font-size: 14px; /* Зменшений шрифт */
+    color: #0f835c;
+    padding: 8px 12px; /* Менші відступи */
+    text-align: center;
+    border: 1px solid #0c7552;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.2s;
+    margin: 20px auto; /* Центрування кнопки */
+}
+
+.add-card-btn:hover, .add-card-btn.active {
+    border: 1px solid #2ab9a2;
+    background-color: #2fb19b;
+    color: #fff;
+}
+.searchInput {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 60px;
+    transition: width 0.5s, border-radius 0.5s;
+    box-shadow: 0 0 0 5px #a5f1d2;
+    overflow: hidden;
+}
+
+.searchInput .icona {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 60px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.searchInput .icona::before {
+    position: absolute;
+    content: '';
+    width: 15px;
+    height: 15px;
+    border: 3px solid #0e9b71;
+    border-radius: 50%;
+    transform: translate(-2px, -2px);
+}
+
+.searchInput .icona::after {
+    position: absolute;
+    content: '';
+    width: 3px;
+    height: 12px;
+    background: #0e9b71;
+    transform: translate(8px, 8px) rotate(-45deg);
+}
+
+.searchInput.active {
+    width: 360px;
+    border-radius: 30px;
+}
+
+.searchInput .input {
+    position: absolute;
+    top: 0;
+    left: 60px;
+    width: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: width 0.5s;
+    overflow: hidden;
+}
+
+.searchInput.active .input {
+    width: calc(100% - 60px);
+}
+
+.searchInput .input input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    padding: 0 10px;
+    font-size: 18px;
+}
+
+
+.card {
+    margin-bottom: 20px; /* Збільшено відстань між карточками по висоті */
+    margin-right: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.card a {
+    text-decoration: none;
+    color: inherit;
+}
+#message {
+    color: red;
+    font-size: 1.2em;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.card__edit {
+    display: block;
+    width: 100%;
+    font-weight: 400;
+    font-size: 14px; /* Зменшено розмір шрифту */
+    color: rgb(35, 143, 111); /* Змінено колір тексту на синій */
+    padding: 6px; /* Зменшено розмір padding */
+    text-align: center;
+    border: 1px solid rgb(83, 255, 183); /* Змінено колір рамки на синій */
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-top: 5px; /* Змінено відступ зверху */
+}
+
+
+
+
+
+
+
+
+
+.categories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 10px;
+}
+
+.category-option {
+    flex: 0 0 calc(33.33% - 10px); /* Зменшуємо ширину кнопок і розміщуємо в 3 колонки */
+    max-width: calc(33.33% - 10px); /* Зменшуємо максимальну ширину кнопок */
+    font-weight: 400;
+    font-size: 15px; /* Зменшуємо розмір шрифту */
+    color: #38a182;
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #149b72;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.category-option:hover {
+    border: 1px solid #6affd2;
+    background-color: #6affd2;
+    color: #fff;
+}
+.categories h2 {
+    margin-right: 18px; /* Доданий відступ справа */
+}
+
+.card__order {
+    display: block;
+    width: 100%;
+    font-weight: 400;
+    font-size: 17px;
+    color: #0f835c;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #0c7552;
+    border-radius: 4px;
+    cursor: pointer; 
+    transition: 0.2s;
+    margin-top: auto;
+}
+
+.card__order:hover {
+    background-color: #0c7552; /* Змінюємо колір фону при наведенні */
+    color: white; /* Змінюємо колір тексту при наведенні */
+}
+/* Modal styles */
+/* Стилі для модального вікна */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5); /* Півпрозорий чорний колір фону */
+}
+
+/* Стилі для вмісту модального вікна */
+.modal-content {
+    background-color: #fefefe; /* Білий колір фону */
+    margin: 15% auto;
+    padding: 20px;
+    border: none;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тінь */
+}
+
+/* Стилі для кнопки закриття */
+.close-order-modal {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-order-modal:hover,
+.close-order-modal:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Стилі для заголовка */
+.modal-content h2 {
+    color: #24aa82; /* Синій колір */
+}
+
+/* Стилі для тексту */
+.modal-content p {
+    color: #555; /* Темно-сірий колір */
+    margin-bottom: 20px;
+}
+
+/* Стилі для посилання */
+.modal-content a {
+    color: #239472; /* Синій колір */
+    text-decoration: none;
+}
+
+.modal-content a:hover {
+    text-decoration: underline; /* Підкреслення при наведенні */
+}
